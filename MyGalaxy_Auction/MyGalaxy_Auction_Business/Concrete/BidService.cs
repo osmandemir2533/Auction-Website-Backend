@@ -185,7 +185,7 @@ namespace MyGalaxy_Auction_Business.Concrete
         }
         private async Task<bool> CheckIsPaidAuction(string userId,int vehicleId)
         {
-            var obj = await context.PaymentHistory.Where(x=>x.UserId == userId && x.VehicleId == vehicleId && x.IsActive == true).FirstOrDefaultAsync();
+            var obj = await context.PaymentHistories.Where(x=>x.UserId == userId && x.VehicleId == vehicleId && x.IsActive == true).FirstOrDefaultAsync();
             if (obj != null)
             {
                 return true;

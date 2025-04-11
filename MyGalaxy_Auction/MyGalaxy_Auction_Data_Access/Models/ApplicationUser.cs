@@ -15,6 +15,10 @@ namespace MyGalaxy_Auction_Data_Access.Models
         public DateTime DateOfBirth { get; set; }
         public ICollection <PaymentHistory> PaymentHistories { get; set; }
         public ICollection <Vehicle> Vehicles{ get; set; }
+        public ICollection<Electronic> Electronics { get; set; }
+        public ICollection<MusicalInstrument> MusicalInstruments { get; set; }
+        public ICollection<Dress> Dresses { get; set; }
+        public ICollection<Estate> Estates { get; set; }
         public ICollection <Bid> Bids { get; set; }
     }
 }

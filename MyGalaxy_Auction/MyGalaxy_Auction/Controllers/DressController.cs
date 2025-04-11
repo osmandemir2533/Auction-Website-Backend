@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MyGalaxy_Auction_Business.Abstraction;
 using MyGalaxy_Auction_Business.Dtos;
@@ -10,21 +9,19 @@ namespace MyGalaxy_Auction.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class VehicleController : ControllerBase
+    public class DressController : ControllerBase
     {
-        private readonly IVehicleService _vehicleService;
+        private readonly IDressService _dressService;
         private readonly IWebHostEnvironment _webHostEnvironment;
-        public VehicleController(IVehicleService vehicleService, IWebHostEnvironment webHostEnvironment)
+
+        public DressController(IDressService dressService, IWebHostEnvironment webHostEnvironment)
         {
+            _dressService = dressService;
             _webHostEnvironment = webHostEnvironment;
-            _vehicleService = vehicleService;
         }
 
-
-
-
-        [HttpPost("CreateVehicle")]
-        public async Task<IActionResult> AddVehicle([FromForm] CreateVehicleDTO model)
+        [HttpPost("CreateDress")]
+        public async Task<IActionResult> AddDress([FromForm] CreateDressDTO model)
         {
             if (ModelState.IsValid)
             {
@@ -38,7 +35,7 @@ namespace MyGalaxy_Auction.Controllers
                 string filePath = Path.Combine(uploadsFolder, fileName);
 
                 model.Image = fileName;
-                var result = await _vehicleService.CreateVehicle(model);
+                var result = await _dressService.CreateDress(model);
                 if (result.isSuccess)
                 {
                     using (var fileStream = new FileStream(filePath, FileMode.Create))
@@ -51,19 +48,19 @@ namespace MyGalaxy_Auction.Controllers
             return BadRequest();
         }
 
-        [HttpGet("GetVehicles")]
-        public async Task<IActionResult> GetAllVehicles()
+        [HttpGet("GetDresses")]
+        public async Task<IActionResult> GetAllDresses()
         {
-            var vehicles = await _vehicleService.GetVehicles();
-            return Ok(vehicles);
+            var dresses = await _dressService.GetDresses();
+            return Ok(dresses);
         }
 
-        [HttpPut("UpdateVehicle")]
-        public async Task<IActionResult> UpdateVehicle([FromForm] UpdateVehicleDTO model, int vehicleId)
+        [HttpPut("UpdateDress")]
+        public async Task<IActionResult> UpdateDress([FromForm] UpdateDressDTO model, int dressId)
         {
             if (ModelState.IsValid)
             {
-                var result = await _vehicleService.UpdateVehicleResponse(vehicleId, model);
+                var result = await _dressService.UpdateDressResponse(dressId, model);
                 if (result.isSuccess)
                 {
                     return Ok(result);
@@ -72,11 +69,10 @@ namespace MyGalaxy_Auction.Controllers
             return BadRequest();
         }
 
-
-        [HttpDelete("Remove/Vehicle/{vehicleId}")]
-        public async Task<IActionResult> DeleteVehicle([FromRoute] int vehicleId)
+        [HttpDelete("Remove/Dress/{dressId}")]
+        public async Task<IActionResult> DeleteDress([FromRoute] int dressId)
         {
-            var result = await _vehicleService.DeleteVehicle(vehicleId);
+            var result = await _dressService.DeleteDress(dressId);
             if (result.isSuccess)
             {
                 return Ok(result);
@@ -84,11 +80,10 @@ namespace MyGalaxy_Auction.Controllers
             return BadRequest();
         }
 
-
-        [HttpGet("{vehicleId}")]
-        public async Task<IActionResult> GetVehicleById([FromRoute] int vehicleId)
+        [HttpGet("{dressId}")]
+        public async Task<IActionResult> GetDressById([FromRoute] int dressId)
         {
-            var result = await _vehicleService.GetVehicleById(vehicleId);
+            var result = await _dressService.GetDressById(dressId);
             if (result.isSuccess)
             {
                 return Ok(result);
@@ -96,10 +91,10 @@ namespace MyGalaxy_Auction.Controllers
             return BadRequest();
         }
 
-        [HttpPut("{vehicleId}")]
-        public async Task<IActionResult> ChangeStatus([FromRoute] int vehicleId)
+        [HttpPut("{dressId}")]
+        public async Task<IActionResult> ChangeStatus([FromRoute] int dressId)
         {
-            var result = await _vehicleService.ChangeVehicleStatus(vehicleId);
+            var result = await _dressService.ChangeDressStatus(dressId);
             if (result.isSuccess)
             {
                 return Ok(result);

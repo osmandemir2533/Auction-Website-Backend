@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using MyGalaxy_Auction.Extensions;
+using MyGalaxy_Auction.Hubs;
 using MyGalaxy_Auction_Business.Abstraction;
 using MyGalaxy_Auction_Business.Concrete;
 using MyGalaxy_Auction_Core.Models;
@@ -33,6 +34,7 @@ builder.Services.AddCors();
 builder.Services.AddSwaggerGen();
 //builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+builder.Services.AddSignalR();
 
 var app = builder.Build();
 
@@ -46,6 +48,7 @@ app.UseCors(x=> x.AllowAnyMethod().AllowAnyHeader().SetIsOriginAllowed(origin =>
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
+app.MapHub<BidUpdateHub>("/BidUpdate/Hub");
 app.UseStaticFiles();
 app.MapControllers();
 

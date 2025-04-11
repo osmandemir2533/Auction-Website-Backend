@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using MyGalaxy_Auction_Business.Abstraction;
 using MyGalaxy_Auction_Business.Dtos;
 using MyGalaxy_Auction_Core.Models;
@@ -18,11 +19,11 @@ namespace MyGalaxy_Auction_Business.Concrete
         private readonly ApplicationDbContext _context;
         private readonly IMapper _mapper;
         private ApiResponse _response;
-        public VehicleService(ApplicationDbContext context,ApiResponse response, IMapper mapper)
+        public VehicleService(ApplicationDbContext context, ApiResponse response, IMapper mapper)
         {
+            _response = response;
             _context = context;
             _mapper = mapper;
-            _response = response;
         }
 
         public async Task<ApiResponse> ChangeVehicleStatus(int vehicleId)
@@ -33,31 +34,31 @@ namespace MyGalaxy_Auction_Business.Concrete
                 _response.isSuccess = false;
                 return _response;
             }
-            _response.isSuccess = true;
             result.IsActive = false;
-            await _context.SaveChangesAsync(); 
+            _response.isSuccess = true;
+            await _context.SaveChangesAsync();
             return _response;
         }
 
         public async Task<ApiResponse> CreateVehicle(CreateVehicleDTO model)
         {
-            if(model!=null)
+            if (model != null)
             {
                 var objDTO = _mapper.Map<Vehicle>(model);
                 if (objDTO != null)
                 {
-                    _context.Add(objDTO);
-                    if (await _context.SaveChangesAsync()>0)
+                    _context.Vehicles.Add(objDTO);
+                    if (await _context.SaveChangesAsync() > 0)
                     {
                         _response.isSuccess = true;
                         _response.Result = model;
                         _response.StatusCode = System.Net.HttpStatusCode.Created;
-                        return _response; 
+                        return _response;
                     }
                 }
             }
-            _response.isSuccess=false;
-            _response.ErrorMessages.Add("Oooops! Something went wrong");
+            _response.isSuccess = false;
+            _response.ErrorMessages.Add("Ooops! Something went wrong");
             return _response;
         }
 
@@ -67,42 +68,39 @@ namespace MyGalaxy_Auction_Business.Concrete
             if (result != null)
             {
                 _context.Vehicles.Remove(result);
-                if(await _context.SaveChangesAsync()>0)
+                if (await _context.SaveChangesAsync() > 0)
                 {
                     _response.isSuccess = true;
                     return _response;
                 }
             }
-            _response.isSuccess=false;
+            _response.isSuccess = false;
             return _response;
         }
 
         public async Task<ApiResponse> GetVehicleById(int vehicleId)
         {
-            var result = await _context.Vehicles.Include(x => x.Seller).FirstOrDefaultAsync(x => x.VehicleId == vehicleId);
+            var result = await _context.Vehicles.Include(x => x.Seller).Include(x => x.Bids).FirstOrDefaultAsync(x => x.VehicleId == vehicleId);
             if (result != null)
             {
                 _response.Result = result;
                 _response.isSuccess = true;
                 return _response;
             }
-            _response.isSuccess = false;
-            return _response;
+            _response.isSuccess = false; return _response;
         }
 
         public async Task<ApiResponse> GetVehicles()
         {
-            var vehicle = await _context.Vehicles.Include(x=>x.Seller).ToListAsync();
+            var vehicle = await _context.Vehicles.Include(x => x.Seller).ToListAsync();
             if (vehicle != null)
             {
-                _response.Result = vehicle;
                 _response.isSuccess = true;
+                _response.Result = vehicle;
                 return _response;
-
             }
             _response.isSuccess = false;
             return _response;
-
         }
 
         public async Task<ApiResponse> UpdateVehicleResponse(int vehicleId, UpdateVehicleDTO model)
@@ -110,11 +108,11 @@ namespace MyGalaxy_Auction_Business.Concrete
             var result = await _context.Vehicles.FindAsync(vehicleId);
             if (result != null)
             {
-                Vehicle objDTO = _mapper.Map(model,result);
-                if(await _context.SaveChangesAsync()>0)
+                Vehicle objDTO = _mapper.Map(model, result);
+                if (await _context.SaveChangesAsync() > 0)
                 {
-                    _response.isSuccess=true;
-                    _response.Result=objDTO;
+                    _response.isSuccess = true;
+                    _response.Result = objDTO;
                     return _response;
                 }
             }

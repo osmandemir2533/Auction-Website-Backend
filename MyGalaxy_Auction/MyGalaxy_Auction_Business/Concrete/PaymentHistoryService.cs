@@ -26,7 +26,7 @@ namespace MyGalaxy_Auction_Business.Concrete
         }
         public async Task<ApiResponse> CheckIsStatusForAuction(string userId, int vehicleId)
         {
-            var response = await _context.PaymentHistory.Where(x=>x.UserId == userId && x.VehicleId == vehicleId && x.IsActive == true).FirstOrDefaultAsync();
+            var response = await _context.PaymentHistories.Where(x=>x.UserId == userId && x.VehicleId == vehicleId && x.IsActive == true).FirstOrDefaultAsync();
             if (response != null)
             {
                 _response.isSuccess = true;

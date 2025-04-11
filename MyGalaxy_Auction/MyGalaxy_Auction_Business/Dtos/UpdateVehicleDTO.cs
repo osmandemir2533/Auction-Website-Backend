@@ -24,8 +24,10 @@ namespace MyGalaxy_Auction_Business.Dtos
         public DateTime EndTime { get; set; }
         public bool IsActive { get; set; } = true;
         public string Image { get; set; }
-
         public string SellerId { get; set; }
-        public IFormFile File { get; set; }
+        public IFormFile? File { get; set; }
+
+
+
     }
 }

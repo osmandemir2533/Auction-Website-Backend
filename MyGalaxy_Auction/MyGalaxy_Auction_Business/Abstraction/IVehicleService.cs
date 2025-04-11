@@ -12,10 +12,9 @@ namespace MyGalaxy_Auction_Business.Abstraction
     {
         Task<ApiResponse> CreateVehicle(CreateVehicleDTO model);
         Task<ApiResponse> GetVehicles();
-        Task<ApiResponse> UpdateVehicleResponse(int vehicleId,UpdateVehicleDTO model);
+        Task<ApiResponse> UpdateVehicleResponse(int vehicleId, UpdateVehicleDTO model);
         Task<ApiResponse> DeleteVehicle(int vehicleId);
         Task<ApiResponse> GetVehicleById(int vehicleId);
         Task<ApiResponse> ChangeVehicleStatus(int vehicleId);
-
     }
 }

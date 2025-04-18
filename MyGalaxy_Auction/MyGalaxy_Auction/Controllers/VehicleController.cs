@@ -30,25 +30,35 @@ namespace MyGalaxy_Auction.Controllers
             {
                 if (model.File == null || model.File.Length == 0)
                 {
-                    return BadRequest();
+                    return BadRequest("File alanı zorunludur");
                 }
 
+                // Resmi kaydet
                 string uploadsFolder = Path.Combine(_webHostEnvironment.ContentRootPath, "Images");
+                if (!Directory.Exists(uploadsFolder))
+                {
+                    Directory.CreateDirectory(uploadsFolder);
+                }
+
                 string fileName = $"{Guid.NewGuid()}{Path.GetExtension(model.File.FileName)}";
                 string filePath = Path.Combine(uploadsFolder, fileName);
 
+                // Resmi kaydet
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    await model.File.CopyToAsync(fileStream);
+                }
+
+                // Image alanına dosya adını ata
                 model.Image = fileName;
+
                 var result = await _vehicleService.CreateVehicle(model);
                 if (result.isSuccess)
                 {
-                    using (var fileStream = new FileStream(filePath, FileMode.Create))
-                    {
-                        await model.File.CopyToAsync(fileStream);
-                    }
                     return Ok(result);
                 }
             }
-            return BadRequest();
+            return BadRequest(ModelState);
         }
 
         [HttpGet("GetVehicles")]

@@ -14,12 +14,12 @@ namespace MyGalaxy_Auction_Business.Mapper
     {
         public MappingProfile()
         {
-            CreateMap<CreateVehicleDTO , Vehicle>().ReverseMap();
-            CreateMap<UpdateVehicleDTO , Vehicle>().ReverseMap();
-            CreateMap<CreateBidDTO , Bid>().ReverseMap();
-            CreateMap<UpdateBidDTO , Bid>().ReverseMap();
-            CreateMap<CreateElectronicDTO, Bid>().ReverseMap();
-            CreateMap<UpdateElectronicDTO, Bid>().ReverseMap();
+            CreateMap<CreateVehicleDTO, Vehicle>().ReverseMap();
+            CreateMap<UpdateVehicleDTO, Vehicle>().ReverseMap();
+            CreateMap<CreateBidDTO, Bid>().ReverseMap();
+            CreateMap<UpdateBidDTO, Bid>().ReverseMap();
+            CreateMap<CreateElectronicDTO, Electronic>().ReverseMap();
+            CreateMap<UpdateElectronicDTO, Electronic>().ReverseMap();
             CreateMap<UpdateDressDTO, Dress>().ReverseMap();
             CreateMap<CreateDressDTO, Dress>().ReverseMap();
             CreateMap<UpdateEstateDTO, Estate>().ReverseMap();

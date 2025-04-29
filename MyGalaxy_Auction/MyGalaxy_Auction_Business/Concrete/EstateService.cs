@@ -51,7 +51,6 @@ namespace MyGalaxy_Auction_Business.Concrete
         {
             var estate = await _context.Estates
                 .Include(e => e.Seller)
-                .Include(e => e.Bids)
                 .FirstOrDefaultAsync(e => e.EstateId == estateId);
 
             if (estate == null)

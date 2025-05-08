@@ -65,8 +65,8 @@ namespace MyGalaxy_Auction_Business.Concrete
 
         public async Task<ApiResponse> GetInstrumentById(int instrumentId)
         {
-            var result = await _context.MusicalInstruments.Include(x => x.Seller).Include(x => x.Bids)
-                            .FirstOrDefaultAsync(x => x.MusicalInstrumentId == instrumentId);
+            var result = await _context.MusicalInstruments.Include(x => x.Seller).
+                            FirstOrDefaultAsync(x => x.MusicalInstrumentId == instrumentId);
 
             if (result != null)
             {

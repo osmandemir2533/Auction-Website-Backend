@@ -20,20 +20,9 @@ namespace MyGalaxy_Auction_Data_Access.Domain
         public string UserId { get; set; }
         public ApplicationUser User { get; set; }
 
-        public int ElectronicId { get; set; }
-        public int EstateId { get; set; }
         public int VehicleId { get; set; }
-        public int MusicalInstrumentId { get; set; }
-        public int DressId { get; set; }
         [JsonIgnore]
         public Vehicle Vehicle { get; set; }
-        [JsonIgnore]
-        public Electronic Electronic { get; set; }
-        [JsonIgnore]
-        public Dress Dress { get; set; }
-        [JsonIgnore]
-        public Estate Estate { get; set; }
-        [JsonIgnore]
-        public MusicalInstrument MusicalInstrument { get; set; }
+       
     }
 }

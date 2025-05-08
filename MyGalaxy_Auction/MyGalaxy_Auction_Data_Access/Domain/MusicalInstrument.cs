@@ -29,9 +29,5 @@ namespace MyGalaxy_Auction_Data_Access.Domain
         [JsonIgnore]
         [ForeignKey("SellerId")]
         public ApplicationUser Seller { get; set; }
-
-        public virtual List<Bid> Bids { get; set; }
-
-        public PaymentHistory? Payment { get; set; }
     }
 }

@@ -123,6 +123,8 @@ Uygulamayı test etmek için aşağıdaki senaryoları kullanabilirsiniz:
     Son Kullanım : 12/25
     CVC : 123
 
+ilgili tablolar oluşturulduktan sonra bu komutun çalıştırılması gerekir: 
+DROP INDEX IX_PaymentHistories_VehicleId ON PaymentHistories;
 
 - **🧪 API Testleri (Swagger / Postman ile)**  
 Veritabanı yapılandırıldıktan sonra API uç noktalarını test etmek için [Swagger UI](https://swagger.io/tools/swagger-ui/) ya da [Postman](https://www.postman.com/) kullanabilirsiniz.  

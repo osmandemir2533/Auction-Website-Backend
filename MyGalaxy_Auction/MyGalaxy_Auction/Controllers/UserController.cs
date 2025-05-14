@@ -36,6 +36,17 @@ namespace MyGalaxy_Auction.Controllers
             return BadRequest(response);
 
         }
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetUserById(string id)
+        {
+            var response = await _userService.GetUserById(id);
+            if (response.isSuccess)
+            {
+                return Ok(response);
+            }
+            return NotFound(response);
+        }
+
 
     }
 }

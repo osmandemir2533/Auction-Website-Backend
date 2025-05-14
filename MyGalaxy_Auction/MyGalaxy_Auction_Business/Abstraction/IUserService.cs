@@ -12,6 +12,7 @@ namespace MyGalaxy_Auction_Business.Abstraction
     {
         Task<ApiResponse> Register(RegisterRequestDTO model );
         Task<ApiResponse> Login(LoginRequestDTO model );
+        Task<ApiResponse> GetUserById(string id);
 
     }
 }

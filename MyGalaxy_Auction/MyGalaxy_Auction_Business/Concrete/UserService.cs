@@ -134,7 +134,35 @@ namespace MyGalaxy_Auction_Business.Concrete
             }
             return _response;
         }
+        public async Task<ApiResponse> GetUserById(string id)
+        {
+            var user = await _userManager.FindByIdAsync(id);
+            if (user == null)
+            {
+                _response.StatusCode = System.Net.HttpStatusCode.NotFound;
+                _response.isSuccess = false;
+                _response.ErrorMessages.Add("User not found");
+                return _response;
+            }
 
-        
+            // DTO'ya dönüştürmek istersen:
+            var userDto = new
+            {
+                user.Id,
+                user.UserName,
+                user.Email,
+                user.FullName,
+                user.ProfilePicture,
+                user.DateOfBirth
+            };
+
+            _response.Result = userDto;
+            _response.StatusCode = System.Net.HttpStatusCode.OK;
+            _response.isSuccess = true;
+            return _response;
+        }
+
+
+
     }
 }

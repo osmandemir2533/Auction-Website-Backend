@@ -242,7 +242,7 @@ Uygulamayı test etmek için aşağıdaki senaryoları kullanabilirsiniz:
 
 
 - *🧪 API Testleri (Swagger / Postman ile)*  
-  [Swagger](https://i.imgur.com/H9Ypvk6.png)
+  > ![Swagger](https://i.imgur.com/H9Ypvk6.png)
   Veritabanı yapılandırıldıktan sonra API uç noktalarını test etmek için [Swagger UI](https://swagger.io/tools/swagger-ui/) ya da [Postman](https://www.postman.com/) kullanabilirsiniz.  
   - Kullanıcı kayıt ve giriş işlemleri  
   - Ürün ekleme / listeleme  

@@ -3,6 +3,10 @@
 [![GitHub](https://img.shields.io/badge/GitHub-Backend-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/osmandemir2533/Auction-Website-Backend)
 [![GitHub](https://img.shields.io/badge/GitHub-Frontend-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/osmandemir2533/Auction-Website-Frontend)
 
+Bu proje, modern web teknolojileri kullanılarak geliştirilmiş, gerçek zamanlı açık artırma işlemlerini destekleyen tam kapsamlı bir web uygulamasıdır. SignalR ile anlık güncellemeler, JWT ile güvenli kullanıcı yönetimi, Stripe ile ödeme altyapısı ve MSSQL veritabanı üzerinde Code-First mimarisi kullanılmıştır.
+
+---
+
 ## 👥 Proje Ekibi
 
 Bu kapsamlı proje, 8 kişilik bir ekip tarafından geliştirilmiştir:
@@ -28,7 +32,6 @@ Bu kapsamlı proje, 8 kişilik bir ekip tarafından geliştirilmiştir:
 
 > **Not:** Projede hem backend hem de frontend geliştirme süreçlerinde aktif rol aldım. Backend tarafında API geliştirme ve veritabanı yönetimi, frontend tarafında ise kullanıcı arayüzü geliştirme , gerçek zamanlı teklif sistemi entegrasyonu , stripe ödeme sistemi entegresi ve dashboard sayfa tasarımları ve endpoint tanımlamaları görevlerinde çalıştım.
 
-Bu proje, modern web teknolojileri kullanılarak geliştirilmiş, gerçek zamanlı açık artırma işlemlerini destekleyen tam kapsamlı bir web uygulamasıdır. SignalR ile anlık güncellemeler, JWT ile güvenli kullanıcı yönetimi, Stripe ile ödeme altyapısı ve MSSQL veritabanı üzerinde Code-First mimarisi kullanılmıştır.
 
 ## 🔍 Proje Hakkında
 

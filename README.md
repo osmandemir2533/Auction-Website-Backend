@@ -60,15 +60,28 @@ Uygulama aşağıdaki ana ürün kategorilerini desteklemektedir:
 1. **Veritabanı Hazırlığı**
    - Visual Studio'da `MyGalaxy_Auction.sln` projesini açın
    - Çözüm Gezgini'nde (`Solution Explorer`) `MyGalaxy_Auction` katmanına sağ tıklayın ve **Başlangıç projesi olarak ayarla** seçeneğini tıklayın.
-   - `appsettings.json` dosyasında connection string'i kendi veritabanı bilgilerinizle güncelleyin:
+   - `appsettings.example.json` dosyasını `appsettings.json` olarak kopyalayın ve aşağıdaki bilgileri kendi bilgilerinizle güncelleyin:
 
    ```json
-   "ConnectionStrings": {
-     "DefaultConnection": "Server=YOUR_SERVER_NAME;Database=MyGalaxyAuctionDB;Trusted_Connection=True;TrustServerCertificate=True;"
+   {
+     "ConnectionStrings": {
+       "DefaultConnection": "Server=YOUR_SERVER_NAME;Database=MyGalaxyAuctionDB;Trusted_Connection=True;TrustServerCertificate=True;"
+     },
+     "SecretKey": {
+       "jwtKey": "YOUR_JWT_SECRET_KEY_HERE"
+     },
+     "Stripe": {
+       "SecretKey": "YOUR_STRIPE_SECRET_KEY",
+       "PublishableKey": "YOUR_STRIPE_PUBLISHABLE_KEY"
    }
    ```
 
-   > **Önemli Not:** Güvenlik nedeniyle projenin orijinal veritabanı paylaşılmamıştır. Bunun yerine, `updated seed data.txt` dosyası projeye dahil edilmiştir. Bu dosyadaki örnek verileri kullanarak kendi veritabanınızı oluşturabilirsiniz.
+   > **Önemli Not:** 
+   > - Connection string'deki `YOUR_SERVER_NAME` kısmını kendi SQL Server adınızla değiştirin
+   > - JWT secret key için güvenli ve uzun bir string kullanın
+   > - Stripe anahtarlarını [Stripe Dashboard](https://dashboard.stripe.com/apikeys)'dan alabilirsiniz
+
+   > **Güvenlik Uyarısı:** Güvenlik nedeniyle projenin orijinal veritabanı ve API anahtarları paylaşılmamıştır. Bunun yerine, `updated seed data.txt` dosyası projeye dahil edilmiştir. Bu dosyadaki örnek verileri kullanarak kendi veritabanınızı oluşturabilirsiniz.
 
 2. **Migration ve Veritabanı Oluşturma**
    - Package Manager Console'u açın (Visual Studio'da `Ctrl+Q` tuşlarına basıp "Package Manager Console" yazın)
@@ -83,6 +96,15 @@ Uygulama aşağıdaki ana ürün kategorilerini desteklemektedir:
    > - 20 adet kıyafet (Zara, H&M, Mango vb.)
    >
    > Tüm ürünler için detaylı bilgiler ve görseller `updated seed data.txt` dosyasında bulunmaktadır.
+
+   > **ApplicationDbContext Yapılandırması:**
+   > `ApplicationDbContext.cs` dosyasında, veritabanı tabloları ve ilişkileri tanımlanmıştır. update seed data.txt de ki veri ve tablo oluşumu bu dosyada yapılır. Her kategori için örnek veriler (elektronik ürünler, gayrimenkul, kıyafetler ve müzik aletleri) bu şekilde veritabanına eklenir. Tüm ürünler için:
+   > - Başlangıç fiyatı
+   > - Açık artırma başlangıç ve bitiş tarihleri
+   > - Ürün detayları (marka, model, açıklama vb.)
+   > - Görsel URL'leri
+   > - Satıcı bilgileri
+   > gibi bilgiler otomatik olarak eklenir.
 
    -  updated seed data.txt de ki tabloları oluşturmak için:
    ```powershell

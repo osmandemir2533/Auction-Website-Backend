@@ -5,6 +5,8 @@
 
 Bu proje, modern web teknolojileri kullanılarak geliştirilmiş, gerçek zamanlı açık artırma işlemlerini destekleyen tam kapsamlı bir web uygulamasıdır. SignalR ile anlık güncellemeler, JWT ile güvenli kullanıcı yönetimi, Stripe ile ödeme altyapısı ve MSSQL veritabanı üzerinde Code-First mimarisi kullanılmıştır.
 
+> Frontend kurulumu için: [Frontend Repo](https://github.com/osmandemir2533/Auction-Website-Frontend)
+
 ---
 
 ## 👥 Proje Ekibi

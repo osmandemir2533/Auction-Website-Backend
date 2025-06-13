@@ -129,7 +129,7 @@ Uygulama aşağıdaki ana ürün kategorilerini desteklemektedir:
    Update-Database
    ```
 
-> **Önemli Not:** İlgili tablolar oluşturulduktan sonra bu komutun çalıştırılması gerekir:
+> **Önemli Not:** İlgili tablolar oluşturulduktan sonra MSSQL de bu komutun çalıştırılması gerekir:
 > ```sql
 > DROP INDEX IX_PaymentHistories_VehicleId ON PaymentHistories;
 > ```
@@ -238,12 +238,6 @@ Uygulamayı test etmek için aşağıdaki senaryoları kullanabilirsiniz:
   Aynı ürün detay sayfasını iki farklı tarayıcı sekmesinde açarak bir sekmeden teklif verin. Diğer sekmede teklifin anlık olarak güncellendiğini gözlemleyebilirsiniz.
 
 - *💳 Stripe Test Ödeme Bilgileri*  
-  Stripe ödeme testini gerçekleştirmek için aşağıdaki test kartı bilgilerini kullanabilirsiniz:
-  
-    Kart Numarası : 4242 4242 4242 4242
-    Son Kullanım : 12/25
-    CVC : 123
-
 
 
 - *🧪 API Testleri (Swagger / Postman ile)*  
